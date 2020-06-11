@@ -10,21 +10,18 @@ const useStyles = makeStyles({
     }
   });
 const Listas = ({onGetNewsFeed}) => {
-    //const [selectedIndex, setSelectedIndex] = React.useState(0);
-    const handleListItemClick = (id) => {
-       //setSelectedIndex(id);
-       onGetNewsFeed(id);
-    };
-  
     const Styles = useStyles();
     const items = CategoryData;
+    const handleOnClick = id => {
+        onGetNewsFeed(id);
+    }
     return (
         <>
             <List component='nav'>
                 {items.map((item) => (
-                    <Link to={(item.id !== 0 ? `/${item.categoryName}/${item.id}`: `/`)} key={item.id} className={Styles.link}>
-                        <ListItem button onClick={() => { handleListItemClick(item.id); }}>
-                            <ListItemText primary={item.categoryName}/>
+                    <Link to={item.pathname} key={item.id} className={Styles.link}>
+                        <ListItem button>
+                            <ListItemText primary={item.categoryName} onClick={() => { handleOnClick(item.id) }}/>
                         </ListItem>
                     </Link>
                 ))}

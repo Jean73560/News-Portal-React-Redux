@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles, Drawer, Divider } from '@material-ui/core'
 //Components
-import Lista from '../../Containers/Lista.js';
+import Listas from '../../Containers/Listas.js';
 
 //Styles
 const useStyles = makeStyles(theme => ({
@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
         >
           <div className={styles.toolbar} ></div>
           <Divider/>
-          <Lista/>
+          <Listas/>
         </Drawer>
     )
 }

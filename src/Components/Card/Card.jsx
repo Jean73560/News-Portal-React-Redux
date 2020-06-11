@@ -3,9 +3,6 @@ import { makeStyles, Typography , Grid, Card, CardMedia, CardContent, CardAction
 import Moment from "moment";
 
 const useStyles = makeStyles({
-    root: {
-      maxWidth: 345,
-    },
     link:{
         color:"rgba(245, 0, 87, 0)"
     }
@@ -17,13 +14,13 @@ const useStyles = makeStyles({
     
     return (
         <>
-            <Grid container spacing={2}>
+        <Grid container spacing={2}>
                 {
                    items.map((item, index) => {
                     return(
                         <Grid key={item.news_id} item xs={12} sm={6} md={4} lg={3}>
-                            <a href={item.url} target="_blank" className={Styles.link}>
-                            <Card className={Styles.root}>
+                            <a href={item.url} rel="noopener noreferrer" target="_blank" className={Styles.link}>
+                            <Card>
                                 <CardActionArea>
                                     <CardMedia
                                     component="img"

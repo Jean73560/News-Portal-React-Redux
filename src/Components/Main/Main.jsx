@@ -2,6 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core'
 import { Switch, Route } from "react-router-dom";
 import NewsFeed from '../../Containers/NewsFeed.js';
+import CategoryData from '../../CategoryData.js';
 
 //Styles
 const useStyles = makeStyles(theme => ({
@@ -9,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     content: {
         flexGrow: 1,
         backgroundColor: theme.palette.background.default,
-        padding: theme.spacing(3),
+        padding: theme.spacing(4),
         color: theme.palette.text.primary
       },
 }))
@@ -21,15 +22,16 @@ const Main = () => {
         <div className={styles.toolbar}/>
         <Switch>
             <Route
-                path="/:categoryName/:categoryId"
-                render={() => {
-                    return <NewsFeed />;
+                path="/:categoryName/"
+                render={({ match }) => {
+                    const category = CategoryData.find(a => a.categoryName === match.params.categoryName);
+                    return <NewsFeed categoryName={category.categoryName} categoryId={category.id}/>;
                 }}
                 />
             <Route
                 path="/"
                 render={() => {
-                    return <NewsFeed />;
+                    return <NewsFeed categoryName="Home" categoryId={0}/>;
                 }}
                 />
             </Switch>

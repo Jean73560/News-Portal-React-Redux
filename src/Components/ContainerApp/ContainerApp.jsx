@@ -24,14 +24,12 @@ const useStyles = makeStyles(theme => ({
         return (
             <div className={styles.root}>
                 <Navbar handleDrawerToggle={handleDrawerToggle}/>
-
                 <Hidden smUp>
                     <Drawers variant="temporary" open={mobileOpen} onClose={handleDrawerToggle}/>
                 </Hidden>
                 <Main/>
             </div>
         )
-    
 }
 export default ContainerApp;
 

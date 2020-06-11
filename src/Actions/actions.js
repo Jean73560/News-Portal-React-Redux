@@ -27,7 +27,7 @@ export const loadingError = bool => (
   )
   
 
-  export const getNewsFeed = categoryId => {
+  export const getNewsFeed = (categoryId, SearchName = "") => {
     return dispatch => {
 
       dispatch(clearRepos())
@@ -36,7 +36,7 @@ export const loadingError = bool => (
   
       dispatch(loadingInProgress(true))
 
-      const ApiUrl = SelectApiUrl(categoryId);
+      const ApiUrl = SelectApiUrl(categoryId, SearchName);
 
       fetch(ApiUrl)
         .then((response) => {
@@ -54,10 +54,12 @@ export const loadingError = bool => (
     }
   }
   
-  const SelectApiUrl = (categoryId) => {
+  const SelectApiUrl = (categoryId, SearchName = "") => {
     const today = Moment().format("YYYY-MM-DD");
       if(categoryId === 0){
           return(`https://api.canillitapp.com/latest/${today}`)
+      } else if (categoryId === 7){
+        return(`https://api.canillitapp.com/search/${SearchName}`)
       } else {
           return(`https://api.canillitapp.com/news/category/${categoryId}`)
       }

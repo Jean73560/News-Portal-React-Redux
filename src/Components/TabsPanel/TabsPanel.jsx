@@ -1,31 +1,50 @@
 import React from 'react'
 import { Tabs, Tab, makeStyles } from '@material-ui/core';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import CategoryData from '../../CategoryData.js';
+
+
 const useStyles = makeStyles({
+    root: {
+        flexGrow: 1,
+    },
     link:{
-        color:"rgba(255, 255, 255, 0.99)"
+        fontWeight: "bold",
+        color:"white"
     }
   });
+
 const TabsPanel = ({onGetNewsFeed}) => {
     const Styles = useStyles();
     const items = CategoryData;
-    //Releaizamos la carga inicial
-    onGetNewsFeed(0);
-
-    const handleListItemClick = (id) => {
+    const handleOnClick = id =>{
         onGetNewsFeed(id);
-     };
-    
+    }
     return (
-        <Tabs variant="scrollable" aria-label="simple tabs example">
+        
+        <Tabs
+          centered
+        >
             {items.map((item) => (
-                <Link to={(item.id !== 0 ? `/${item.categoryName}/${item.id}`: `/`)} key={item.id} className={Styles.link}>
-                    <Tab label={item.categoryName} onClick={() => { handleListItemClick(item.id); }} />
+                <NavLink exact to={item.pathname} key={item.id} className={Styles.link} activeStyle={{fontWeight: "bold", color:"#FF0080"}}>
+                    <Tab label={item.categoryName} key={item.id} onClick={() => { handleOnClick(item.id) }}/>
+                </NavLink>
+                    
+            ))}
+        </Tabs>
+      
+    )
+}
+
+
+/*onClick={() => { handleOnClick(item.id) }}
+            <Tabs variant="scrollable" aria-label="simple tabs example">
+            {items.map((item) => (
+                <Link to={item.pathname} key={item.id} className={Styles.link}>
+                    <Tab label={item.categoryName} onClick={() => { handleOnClick(item.id) }}/>
                 </Link>
             ))}
         </Tabs>
-    )
-}
+*/
 
 export default TabsPanel

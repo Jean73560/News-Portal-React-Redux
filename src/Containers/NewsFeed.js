@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import NewsFeedList from '../Components/NewsFeed/NewsFeedList.jsx';
+import { getNewsFeed } from '../Actions/actions.js'
 
 const mapStateToProps = state => ({
   NewsFeed: state.NewsFeedList,
@@ -7,7 +8,11 @@ const mapStateToProps = state => ({
   isLoading: state.loadingInProgress
 })
 
+const mapDispatchToProps = (dispatch) => ({
+  onGetNewsFeed: (id) => dispatch(getNewsFeed(id))
+})
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(NewsFeedList)
